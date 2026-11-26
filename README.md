@@ -1,23 +1,115 @@
-# Market Coin Farmer — Enhanced
+# Market Coin Farmer — Enhanced V3
 
-Private Windows x64 maintenance build of [Market Coin Farmer](https://github.com/xob0t/market-coin-farmer) by xob0t. This is an unofficial modification, not an official Yandex product.
+![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011%20x64-0078D4)
+![Version](https://img.shields.io/badge/version-1.3.0--enhanced.3-blue)
+![npm audit](https://img.shields.io/badge/npm%20audit-0%20findings%20at%20release-brightgreen)
 
-## Enhanced V3
+Неофициальная модификация [Market Coin Farmer](https://github.com/xob0t/market-coin-farmer) для Windows. Приложение позволяет работать с монетами, ежедневными наградами и колесом призов Яндекс Маркета. Enhanced V3 исправляет совместимость с форматом версии Маркета, улучшает хранение данных аккаунтов и добавляет автоматизированную сборку с проверками безопасности.
 
-- Compatibility with the observed November 2026 Market version format.
-- Windows DPAPI (CurrentUser) protection of stored account configuration.
-- Removal of direct account-object logging and improved notification contrast.
-- Safer account editing and duplicate detection.
-- Automated build and regression checks; local npm audits reported zero known findings on 27 November 2026.
+> Приватный проект для личного использования. Не является официальным продуктом Яндекса.
 
-## Build and recovery
+## Скачать
 
-Base commit: `27b6c1a0750c4bd595b565a3c14c5000455f3314`.
+**[Открыть релиз Enhanced V3](https://github.com/BredBerry/MarketCoinFarmer-Enhanced/releases/tag/v1.3.0-enhanced.3)**
 
-Local tools used: Go 1.27.4, Node.js 26.13.1, npm 11.20.0, Wails v3.0.0-beta.5, Task 3.54.0, Git and WebView2. Extract the V3 builder archive and run BUILD.bat without administrator privileges. Keep the audited lockfile for future builds. The ready-to-use executable and V3 builder archive are available in the [v1.3.0-enhanced.3 release](https://github.com/BredBerry/MarketCoinFarmer-Enhanced/releases/tag/v1.3.0-enhanced.3). The audited lockfile and audit reports are stored in `recovery/`. The builder resolves security updates again when rebuilding, so future builds may differ from this release.
+| Файл | Назначение |
+| --- | --- |
+| [market-coin-farmer.exe](https://github.com/BredBerry/MarketCoinFarmer-Enhanced/releases/download/v1.3.0-enhanced.3/market-coin-farmer.exe) | Готовая программа для Windows x64 |
+| [Market_Coin_Farmer_Improved_Builder_v3.zip](https://github.com/BredBerry/MarketCoinFarmer-Enhanced/releases/download/v1.3.0-enhanced.3/Market_Coin_Farmer_Improved_Builder_v3.zip) | Сборщик, патчи и тесты |
 
-## Security and rights
+Для скачивания необходимо войти в GitHub с доступом к приватному репозиторию.
 
-Never upload config.dpapi, config.yaml, session cookies or proxy credentials. DPAPI is bound to the Windows user context and does not protect against every process running as that user. Zero npm audit findings are not a guarantee of safety. Automation may be restricted by service rules.
+## Быстрый старт
 
-Upstream has no declared license identified during review; this private repository is for personal maintenance. Do not redistribute upstream code or binaries without permission.
+1. Скачайте EXE и поместите его в отдельную папку с доступом на запись.
+2. Запустите программу без прав администратора.
+3. Нажмите «Аккаунт», затем «Войти через браузер» и авторизуйтесь в Яндексе.
+4. Добавьте аккаунт и проверьте баланс и доступные награды.
+
+Прокси необязателен. Для входа через браузер нужен установленный Edge или Chrome. Для готового EXE **не нужны Git, Go, Node.js, Wails и Task**. Необходим Microsoft Edge WebView2 Runtime.
+
+## Что нового в Enhanced V3
+
+- Поддержка формата версии Маркета с префиксом `mf-promoloyalty.`.
+- Шифрование сохранённых cookies и параметров прокси через Windows DPAPI (CurrentUser).
+- Удаление прямого вывода объектов аккаунтов в логи.
+- Ограничение импорта cookies доменами Яндекса.
+- Проверки дубликатов и более безопасное редактирование аккаунтов.
+- Улучшенный контраст уведомлений и скрытие пароля прокси на карточке.
+- Обновление npm-зависимостей, автоматизированная сборка и регрессионные тесты.
+
+## Проверки релиза
+
+| Проверка | Результат на 27.11.2026 |
+| --- | --- |
+| Windows x64 production build | Успешно |
+| Регрессионные тесты TestMCF | Пройдены |
+| Go module verification | Пройдена |
+| [Полный npm audit](recovery/npm-audit-all.json) | 0 обнаруженных уязвимостей |
+| [Production npm audit](recovery/npm-audit-production.json) | 0 обнаруженных уязвимостей |
+
+SHA-256 опубликованного EXE:
+
+```text
+2d58e85a3c5b9c3ada3f7973e16b438ce2239ed32f0c84ce96b46239d5693b04
+```
+
+Проверка скачанного файла в PowerShell (из папки с EXE):
+
+```powershell
+Get-FileHash .\market-coin-farmer.exe -Algorithm SHA256
+```
+
+Аудиты фиксируют состояние зависимостей на дату сборки. Они не заменяют полный аудит Go, WebView2 и исполняемого файла.
+
+## Сборка из исходников
+
+Сборщик использует оригинальный проект на фиксированном коммите `27b6c1a0750c4bd595b565a3c14c5000455f3314`, применяет локальные исправления и собирает Windows x64 EXE.
+
+Требования: Git, Go 1.26+, Node.js с npm, Wails v3.0.0-beta.5, Task v3 и WebView2. Проверенное окружение: Go 1.27.4, Node.js 26.13.1, npm 11.20.0, Task 3.54.0.
+
+Скачайте и распакуйте архив сборщика либо клонируйте этот репозиторий. Откройте CMD в папке с BUILD.bat.
+
+Чистая сборка без переноса аккаунтов:
+
+```cmd
+BUILD.bat -NoImport
+```
+
+Сборка с переносом конфигурации текущей установки (укажите действительный путь):
+
+```cmd
+BUILD.bat -LegacyFolder "D:\Desktop\Market Coin Farmer"
+```
+
+Не запускайте BUILD.bat без параметров после удаления старой V2: в опубликованной версии сборщика указан исторический путь к V2. Используйте одну из команд выше.
+
+Сборщик обновляет npm lock-файл без `--force`, проверяет npm-аудит до и после сборки, целостность Go-модулей и регрессионные тесты. При ошибках установка останавливается. Новая сборка создаётся отдельно на рабочем столе; старая не перезаписывается. Перед импортом закройте все окна приложения.
+
+Отчёты и исходники сборки: `%LOCALAPPDATA%\MCFBuilder\<id>`. [Сохранённый lock-файл релиза](recovery/package-lock.json) служит для справки и восстановления зависимостей; текущий сборщик автоматически пересчитывает его, поэтому будущая сборка может отличаться.
+
+## Хранение настроек и восстановление
+
+Приложение хранит `config.dpapi` рядом с EXE. Для переноса в другую папку в той же Windows и под тем же пользователем сохраните оба файла. При переустановке Windows или смене учётной записи может потребоваться повторный вход.
+
+**Никогда не загружайте config.dpapi, config.yaml, cookies, токены или пароли в GitHub, даже в приватный репозиторий.** DPAPI защищает данные на диске, но не от всех процессов с правами текущего пользователя.
+
+## Структура репозитория
+
+```text
+BUILD.bat       # запуск сборщика
+build.ps1       # автоматизированная сборка
+patches/        # исправления и регрессионные тесты
+recovery/       # lock-файл и отчёты npm audit
+README_RU.txt   # инструкция сборщика
+CHANGELOG.md    # история изменений
+SECURITY.md     # правила безопасности
+```
+
+## Авторство и ограничения
+
+Оригинальный проект — [xob0t/market-coin-farmer](https://github.com/xob0t/market-coin-farmer). Enhanced V3 — локальная модификация для личного использования. У оригинального проекта не обнаружена объявленная лицензия; не распространяйте модифицированный код или бинарники публично без разрешения правообладателя.
+
+Изменения API Маркета могут нарушить работу приложения в будущем. Автоматизация может повлечь ограничения аккаунта по правилам сервиса. Абсолютная безопасность и отсутствие блокировок не гарантируются.
+
+[История изменений](CHANGELOG.md) · [Безопасность](SECURITY.md) · [Релизы](https://github.com/BredBerry/MarketCoinFarmer-Enhanced/releases)
