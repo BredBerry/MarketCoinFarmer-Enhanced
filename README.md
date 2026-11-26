@@ -14,7 +14,7 @@ Private Windows x64 maintenance build of [Market Coin Farmer](https://github.com
 
 Base commit: `27b6c1a0750c4bd595b565a3c14c5000455f3314`.
 
-Local tools used: Go 1.27.4, Node.js 26.13.1, npm 11.20.0, Wails v3.0.0-beta.5, Task 3.54.0, Git and WebView2. Extract the V3 builder archive and run BUILD.bat without administrator privileges. Keep the audited lockfile for future builds. Builder and binary are pending upload from the local PC.
+Local tools used: Go 1.27.4, Node.js 26.13.1, npm 11.20.0, Wails v3.0.0-beta.5, Task 3.54.0, Git and WebView2. Extract the V3 builder archive and run BUILD.bat without administrator privileges. Keep the audited lockfile for future builds. The ready-to-use executable and V3 builder archive are available in the [v1.3.0-enhanced.3 release](https://github.com/BredBerry/MarketCoinFarmer-Enhanced/releases/tag/v1.3.0-enhanced.3). The audited lockfile and audit reports are stored in `recovery/`. The builder resolves security updates again when rebuilding, so future builds may differ from this release.
 
 ## Security and rights
 
