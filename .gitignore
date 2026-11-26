@@ -1,0 +1,24 @@
+# Account data: never commit
+config.yaml
+config.yml
+config.dpapi
+config.dpapi.*
+*.dpapi
+cookies.txt
+cookies.json
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+# Build artifacts and local logs
+*.exe
+*.syso
+*.log
+node_modules/
+dist/
+bin/
+.mcf-stage-*/
+MCFBuilder/
+*.tmp
+*.bak
